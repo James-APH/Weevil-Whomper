@@ -1,0 +1,7 @@
+import pygame
+
+WIDTH = 1280
+HEIGHT = 720
+
+TILE_SIZE = 32
+FRAME_RATE = 30
