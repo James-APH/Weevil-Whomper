@@ -1,6 +1,6 @@
 from settings import *
 from player import Player
-from background import *
+from background import Background
 
 
 class Game:
@@ -30,7 +30,7 @@ class Game:
             # update
 
             # draw
-            self.background.draw(self.screen)
+            self.background.update(self.screen, self.player.get_coords()[0], dt)
             self.main_sprites.update(dt)
             self.main_sprites.draw(self.screen)
             pygame.display.update()
