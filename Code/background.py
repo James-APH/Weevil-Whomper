@@ -25,20 +25,22 @@ class Background(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
         self.direction = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
 
-    def background_move(self, dt):
-        if self.pos > 0 and self.direction < 0:
-            self.pos += self.direction * VELOCITY * dt
-        if self.pos < 5000 and self.direction > 0:
-            self.pos += self.direction * VELOCITY * dt
+    def background_move(self, player_pos, dt):
+        move_space = BOUNDARY * 2
+        if player_pos < move_space or player_pos > WIDTH - move_space:
+            if self.pos > 0 and self.direction < 0 and player_pos < WIDTH / 2:
+                self.pos += self.direction * VELOCITY * dt
+            if self.pos < 10000 and self.direction > 0 and player_pos > WIDTH / 2:
+                self.pos += self.direction * VELOCITY * dt
 
     def background_display(self, screen):
         for dist in range(5):
-            speed = 1
+            velocity = 1
             for layer in self.layers:
-                screen.blit(layer, ((dist * self.width) - (self.pos * speed), 0))
-                speed += 0.2
+                screen.blit(layer, ((dist * self.width) - (self.pos * velocity), 0))
+                velocity += 0.1
 
-    def update(self, screen, dt):
+    def update(self, screen, player_pos, dt):
         self.get_input()
-        self.background_move(dt)
+        self.background_move(player_pos, dt)
         self.background_display(screen)
