@@ -10,12 +10,24 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_frect(center=coord)
         self.direction = pygame.math.Vector2(0, 0)
         self.width = self.image.get_width()
+        self.moving = Movement
+        self.sprite_move_value = 0
+
+    def animate(self):
+        pass
 
     def get_input(self):
         keys = pygame.key.get_pressed()
-        self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
-        # if int(keys[pygame.K_SPACE]):
-        #    pass  # implement jumping once player can move
+        # Setting enum for character animation
+        if keys[pygame.K_RIGHT]:
+            self.moving = Movement.RIGHT
+        if keys[pygame.K_LEFT]:
+            self.moving = Movement.LEFT
+        # Moving Object
+        if self.moving == Movement.LEFT or self.moving == Movement.RIGHT:
+            self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
+        else:
+            self.moving = Movement.IDLE
 
     def move(self, dt):
         if (self.rect.left + (self.direction[0] * VELOCITY * dt) < BOUNDARY / 2) or (
@@ -28,6 +40,7 @@ class Player(pygame.sprite.Sprite):
     def update(self, dt):
         self.get_input()
         self.move(dt)
+        self.animate()
 
     def get_coords(self):
         return (self.rect.centerx, self.rect.centery)
