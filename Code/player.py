@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_frect(center=coord)
         self.direction = pygame.math.Vector2(0, 0)
         self.width = self.image.get_width()
+        self.update_val = 2
 
     def load_images(self):
         for path, sub_dirs, files in walk(self.path):
@@ -30,19 +31,22 @@ class Player(pygame.sprite.Sprite):
                     self.images[dir].append(image)
 
     def animate(self, dt):
-        self.sprite_index += 5 * dt
+        self.sprite_index += self.update_val * dt
         if self.movement == Movement.LEFT:
             self.image = self.images[Movement.LEFT][
                 int(self.sprite_index) % len(self.images[Movement.LEFT])
             ]
+            self.update_val = 4
         if self.movement == Movement.RIGHT:
             self.image = self.images[Movement.RIGHT][
                 int(self.sprite_index) % len(self.images[Movement.RIGHT])
             ]
+            self.update_val = 4
         if self.movement == Movement.IDLE:
             self.image = self.images[Movement.IDLE][
                 int(self.sprite_index) % len(self.images[Movement.IDLE])
             ]
+            self.update_val = 2
 
     def get_input(self):
         keys = pygame.key.get_pressed()
