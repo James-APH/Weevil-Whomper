@@ -21,3 +21,7 @@ TILE_SIZE = 32
 FRAME_RATE = 30
 
 VELOCITY = 300
+
+
+# Loading images here so constructor for player is not chaos
+# IDLE
