@@ -5,9 +5,9 @@ from enum import Enum
 
 # {"Idle_Leaf": [], "Right_Walk_Leaf": [], "Left_Walk_Leaf": []}
 class Movement(str, Enum):
-    LEFT = "Idle_Leaf"
+    LEFT = "Left_Walk_Leaf"
     RIGHT = "Right_Walk_Leaf"
-    IDLE = "Left_Walk_Leaf"
+    IDLE = "Idle_Leaf"
     JUMP = "Jump_Leaf"
     CROUCH = "Crouch_Leaf"
 
