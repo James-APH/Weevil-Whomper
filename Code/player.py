@@ -13,7 +13,9 @@ class Player(pygame.sprite.Sprite):
         self.moving = Movement
         self.sprite_move_value = 0
 
-        # loading images
+        # loading images // Going to try a different technique, but first need to do some
+        # image file and code re-mapping
+        self.images = {"Idle_Leaf": [], "Right_Walk_Leaf": [], "Left_Walk_Leaf": []}
         self.idle_images = []
         self.left_images = []
         self.right_images = []
