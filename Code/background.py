@@ -21,6 +21,10 @@ class Background(pygame.sprite.Sprite):
         self.direction = 0
         self.pos = 0
 
+        # Could on a later date be decided in the constructor params to determine
+        # the length of a level, but for now it is decided here.
+        self.limit = 10000
+
     def get_input(self):
         keys = pygame.key.get_pressed()
         self.direction = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
@@ -30,7 +34,7 @@ class Background(pygame.sprite.Sprite):
         if player_pos < move_space or player_pos > WIDTH - move_space:
             if self.pos > 0 and self.direction < 0 and player_pos < WIDTH / 2:
                 self.pos += self.direction * VELOCITY * dt
-            if self.pos < 10000 and self.direction > 0 and player_pos > WIDTH / 2:
+            if self.pos < self.limit and self.direction > 0 and player_pos > WIDTH / 2:
                 self.pos += self.direction * VELOCITY * dt
 
     def background_display(self, screen):
