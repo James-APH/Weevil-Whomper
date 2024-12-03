@@ -3,12 +3,13 @@ from os.path import join
 from enum import Enum
 
 
-class Movement(Enum):
-    LEFT = 1
-    RIGHT = 2
-    IDLE = 3
-    JUMP = 4
-    CROUCH = 5
+# {"Idle_Leaf": [], "Right_Walk_Leaf": [], "Left_Walk_Leaf": []}
+class Movement(str, Enum):
+    LEFT = "Idle_Leaf"
+    RIGHT = "Right_Walk_Leaf"
+    IDLE = "Left_Walk_Leaf"
+    JUMP = "Jump_Leaf"
+    CROUCH = "Crouch_Leaf"
 
 
 WIDTH = 1280
