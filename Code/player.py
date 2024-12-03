@@ -46,19 +46,19 @@ class Player(pygame.sprite.Sprite):
 
     def get_input(self):
         keys = pygame.key.get_pressed()
-        # Setting enum for character animation and preventing movement overlap
-        if keys[pygame.K_RIGHT]:
-            if self.movement == Movement.LEFT:
-                self.sprite_move_value = 0
-            self.movement = Movement.RIGHT
-        if keys[pygame.K_LEFT]:
-            if self.movement == Movement.RIGHT:
-                self.sprite_move_value = 0
-            self.movement = Movement.LEFT
-        # movement Object
-        if self.movement == Movement.LEFT or self.movement == Movement.RIGHT:
-            self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
+        self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
+        if keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
+            if keys[pygame.K_RIGHT]:
+                if self.movement != Movement.RIGHT:
+                    self.sprite_index = 0
+                self.movement = Movement.RIGHT
+            elif keys[pygame.K_LEFT]:
+                if self.movement != Movement.LEFT:
+                    self.sprite_index = 0
+                self.movement = Movement.LEFT
         else:
+            if self.movement != Movement.IDLE:
+                self.sprite_index = 0
             self.movement = Movement.IDLE
 
     def move(self, dt):
@@ -71,8 +71,8 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.get_input()
-        self.move(dt)
         self.animate(dt)
+        self.move(dt)
 
     def get_coords(self):
         return (self.rect.centerx, self.rect.centery)
