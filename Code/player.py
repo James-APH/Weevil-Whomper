@@ -1,6 +1,4 @@
 from settings import *
-from os import walk
-from os import listdir
 
 
 class Player(pygame.sprite.Sprite):
