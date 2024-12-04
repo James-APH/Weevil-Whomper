@@ -51,6 +51,7 @@ class Game:
             self.quit_button.update(self.screen, dt)
             if self.play_button.get_input():
                 self.splash_state = Splash.NONE
+                self.play_button.reset()
                 self.run_game()
             elif self.quit_button.get_input():
                 self.splash_state = Splash.NONE
@@ -72,6 +73,7 @@ class Game:
             self.quit_button.update(self.screen, dt)
             if self.play_button.get_input():
                 self.splash_state = Splash.NONE
+                self.play_button.reset()
                 self.run_game()
             elif self.quit_button.get_input():
                 self.splash_state = Splash.NONE
@@ -88,7 +90,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.play = False
 
-            if self.player.get_coords()[0] >= 5000:
+            if self.background.get_pos() >= 3000:
                 self.splash_state = Splash.WIN
                 self.win()
 

@@ -56,6 +56,9 @@ class Button(pygame.sprite.Sprite):
                 int(self.sprite_index) % len(self.images[self.button_type])
             ]
 
+    def reset(self):
+        self.button_state = Button_State.NONE
+
     def button_display(self, screen, dt):
         for _ in range(4):
             self.animate(dt)

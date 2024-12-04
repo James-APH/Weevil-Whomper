@@ -44,6 +44,9 @@ class Background(pygame.sprite.Sprite):
                 screen.blit(layer, ((dist * self.width) - (self.pos * velocity), 0))
                 velocity += 0.1
 
+    def get_pos(self):
+        return self.pos
+
     def update(self, screen, player_pos, dt):
         self.get_input()
         self.background_move(player_pos, dt)
