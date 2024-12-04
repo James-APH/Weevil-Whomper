@@ -20,6 +20,11 @@ class Splash(str, Enum):
     NONE = "NONE"
 
 
+class Button_State(str, Enum):
+    PRESSED = "pressed"
+    NONE = "NONE"
+
+
 WIDTH = 1280
 HEIGHT = 640
 
